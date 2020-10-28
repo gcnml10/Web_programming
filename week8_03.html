@@ -2,7 +2,14 @@
 <html>
     <head>
         <title>Without viewport meata</title>
-        <meta name="viewport" content="user-scalable=no, initial-scale-1">
+        <style>
+            @media screen {
+                body { background-color: beige;}
+            }
+            @media print {
+                body { background-color: green;}
+            }
+        </style>
     </head>
     <body>
         <h1>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h1>
