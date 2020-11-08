@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        마미손: 집밥 레시피 저장소
+    </title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <script>
+    </script>
+    <!--초기화-->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+            margin-top: 5px;
+        }
+    </style>
+    <!--기본 클래스-->
+    <style>
+        .pull-left {
+            float: left;
+        }
+
+        .pull-right {
+            float: right;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+    </style>
+    <!--페이지 구성하기-->
+    <style>
+        /*body tag 설정*/
+        body {
+            width: 960px;
+            margin: 0 auto;
+            background: #f7ebca;
+        }
+
+        /*page wrapper 설정*/
+        #page-top {
+            display: block;
+            background: white;
+            margin: 40px 0;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+        }
+    </style>
+    <!-- 헤더 구성하기-->
+    <style>
+        #page-top>h2 {
+            font-family: 'Jua', sans-serif;
+            font-size: 34px;
+        }
+    </style>
+    <!-- 네비게이션 및 풀다운 메뉴 구성-->
+    <style>
+        #main-navigation {
+            vertical-align: middle;
+            display: table-cell;
+            width: 960px;
+            margin: 20px 0px;
+            height: 70px;
+            font-style: 'Jua', sans-serif;
+        }
+
+        .outer-menu {
+            float: left;
+            display: inline;
+            margin: 0px 10px;
+            padding: 10px;
+            background-color: rgb(67, 117, 54);
+            border: 1px solid rgb(67, 117, 54);
+            border-radius: 20px;
+            vertical-align: middle;
+            display: table-cell;
+            cursor: pointer;
+            font-style: 'Jua', sans-serif;
+        }
+
+        .menu-font {
+            font: 'Jua', sans-serif;
+        }
+
+        .vertical-ul {
+            display: inline;
+            vertical-align: middle;
+        }
+
+        .inner-menu {
+            display: none;
+            transition: .2s ease-in-out;
+            font-style: 'Jua', sans-serif;
+        }
+
+        .outer-menu:hover {
+            background-color: rgb(235, 219, 80);
+            border: 1px solid rgb(235, 219, 80);
+        }
+
+        .outer-menu:hover .inner-menu {
+            display: block;
+
+        }
+    </style>
+    <!--검색 양식 추가-->
+    <style>
+        .search-bar {
+            margin-top: 10px;
+            display: inline;
+            vertical-align: middle;
+            float: right;
+        }
+
+        .input-text {
+            display: block;
+            float: left;
+            background-color: white;
+            border: 1px solid #cccccc;
+            border-radius: 15px 0 0 15px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+            width: 120px;
+            height: 24px;
+            padding: 0 0 0 10px;
+            font-size: 12px;
+            color: #555555;
+        }
+
+        .input-submit {
+            float: left;
+            background-color: #33be51;
+            width: 50px;
+            height: 26px;
+            border-radius: 0 15px 15px 0;
+            border: 1px solid #33be51;
+            margin-left: -1px;
+            vertical-align: top;
+            display: inline-block;
+        }
+
+        .input-text:focus {
+            border-color: rgba(82, 168, 236, 0.8);
+            outline: 0;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+    <!--본문 추가하기-->
+    <style>
+        #content {
+            overflow: hidden;
+            width: 960px;
+            float: left;
+            margin-top: 20px;
+            display: block;
+        }
+
+        #main-section {
+            float: left;
+            width: 710px;
+            margin-left: -1px;
+        }
+
+        #main-aside {
+            float: right;
+            width: 200px;
+        }
+    </style>
+    <!--Article 정리-->
+    <style>
+        .articles {
+            display: block;
+            margin: 20px 0;
+            height: 350px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(100, 100, 100, 0.3);
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-head {
+            margin-bottom: 15px;
+            font-size: 35px;
+            font-family: 'Jua', sans-serif;
+        }
+
+        .checkbox {
+            display: block;
+            margin-bottom: 12px;
+            height: 30px;
+        }
+    </style>
+    <!--Aside 정리-->
+    <style>
+        #main-aside {
+            width: 180px;
+            margin-top: 100px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(100, 100, 100, 0.3);
+            text-overflow: ellipsis;
+            /* position: fixed;
+            top: 50%;
+            right: 15%; */
+        }
+
+        .overflow {
+            margin: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 160px;
+            white-space: nowrap;
+        }
+    </style>
+    <!--레시피 form-->
+    <style>
+        .recipe-form {
+            display: block;
+            margin: 20px 0;
+            height: 450px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(100, 100, 100, 0.3);
+        }
+    </style>
+    <!--분류 버튼-->
+    <style>
+        .sorted {
+            width: 150px;
+            height: 30px;
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 30px;
+            background-color: orange;
+            border: 1px solid orange;
+            ;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .button {
+            font-family: 'Jua', sans-serif;
+            font-size: 30px;
+        }
+
+        .like_botton {
+            width: 70px;
+            height: auto;
+            padding: 5px;
+            font-family: 'Jua', sans-serif;
+            font-size: 20px;
+            background-color: rgb(55, 98, 241);
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="page-top">
+            <h2>
+                MANI-SON
+            </h2>
+            <h4>
+                우리 엄마 아빠의 집밥 레시피를 기록하고 공유해보세요
+            </h4>
+
+
+        </div>
+    </header>
+    <nav id="main-navigation">
+        <ul class="vertical-ul">
+            <li class="outer-menu" class="menu-font"><a href="" class="menu-font">전체 보기</a></li>
+            <li class="outer-menu menu-font"><span menu-font>음식 종류</span>
+                <ul class="inner-menu">
+                    <li class="inner-menu-item"><a href="">● 한식</a><a href="">● 중식</a></li>
+                    <li class="inner-menu-item"><a href="">● 양식</a> <a href="">● 일식</a></li>
+                    <li class="inner-menu-item"><a href="">● 기타</a></li>
+                </ul>
+            </li>
+            <li class="outer-menu">레시피 입력</li>
+            <li class="outer-menu">우리집 레시피 목록</li>
+            <li class="outer-menu">찜 목록</li>
+        </ul>
+        <div class="search-bar">
+            <form>
+                <input class="input-text" type="text">
+                <input class='input-submit' type="submit" value='검색'>
+            </form>
+        </div>
+        <div class="pull-right">
+            <img src="https://ifh.cc/g/L6c7cz.png" alt="" style="width: auto; height: 100px; ">
+        </div>
+    </nav>
+    <div id="content">
+        <section id="main-section">
+            <div class="sorted">
+                <div class="button">한식</div>
+            </div>
+            <article class="articles">
+                <div class="article-content">
+                    <h2 class="article-head">제육볶음</h2>
+                    <div class="checkbox">
+                        <div class="pull-right">
+                            <button class="like_botton">찜 하기</button>
+                        </div>
+                    </div>
+                    <p>
+                        <!-- <pre> -->
+                        1. 뜨겁게 달군 팬에 식용유 1큰술을 두르고 채 썬 양파를 살짝 볶아놓는다.
+
+                        2. 다시 팬을 달구어 식용유 1큰술을 두르고 중간 불에서 양념한 돼지고기를 타지 않게 저어가며 볶는다. 돼지고기가 완전히 익으면 볶아놓은 양파와 길쭉하게 썬 파를 넣어 잘
+                        섞는다.
+
+                        3. 잘 익은 돼지고기를 그릇에 담고 송송 썬 파를 올려서 낸다.
+                        [네이버 지식백과] 제육볶음 [Jeyuk-bokkeum] (한국음식 200선, 2017. 12. 01., 한복선, Gloryvee Ramos, James Robert
+                        Nasella, 담연, 한식진흥원)
+                        <!-- </pre> -->
+                    </p>
+                </div>
+            </article>
+            <article class="articles">
+                <div class="article-content">
+                    <h2 class="article-head">김치찌개</h2>
+                    <div class="checkbox">
+                        <div class="pull-right">
+                            <button class="like_botton">찜 하기</button>
+                        </div>
+                    </div>
+                    <p>
+                        <!-- <pre> -->
+                        1. 냄비에 물을 붓고 무와 양파를 넣어, 센불에 8분 정도 올려 끓으면, 중불로 낮추어 20분 정도 더 끓이다가 다시마를 넣고 불을 끈다음 5분정도 두었다가 체에 걸러
+                        찌갯국물을
+                        만든다(1.2kg).【사진2】
+
+                        2. 냄비를 달구어 참기름을 두르고, 돼지고기를 넣어 중불에서 2분 정도 볶다가, 배추김치를 넣고 2분 정도 더 볶는다.【사진3】
+
+                        3. 볶은 돼지고기와 배추김치에 찌갯국물과 고춧가루를 넣고, 센불에 6분 정도 올려 끓으면 중불로 낮추어 30분 정도 더 끓인다.
+                        <!-- </pre> -->
+                    </p>
+                </div>
+            </article>
+            <article class="articles">
+                <div class="article-content">
+                    <h2 class="article-head">비빔국수</h2>
+                    <div class="checkbox">
+                        <div class="pull-right">
+                            <button class="like_botton">찜 하기</button>
+                        </div>
+                    </div>
+                    <p>
+                        <!-- <pre> -->
+                        1. 냄비에 물을 붓고 무와 양파를 넣어, 센불에 8분 정도 올려 끓으면, 중불로 낮추어 20분 정도 더 끓이다가 다시마를 넣고 불을 끈다음 5분정도 두었다가 체에 걸러
+                        찌갯국물을
+                        만든다(1.2kg).【사진2】
+
+                        2. 냄비를 달구어 참기름을 두르고, 돼지고기를 넣어 중불에서 2분 정도 볶다가, 배추김치를 넣고 2분 정도 더 볶는다.【사진3】
+
+                        3. 볶은 돼지고기와 배추김치에 찌갯국물과 고춧가루를 넣고, 센불에 6분 정도 올려 끓으면 중불로 낮추어 30분 정도 더 끓인다.
+                        <!-- </pre> -->
+                    </p>
+                </div>
+            </article>
+            <article class="articles">
+                <div class="article-content">
+                    <h2 class="article-head">김치전</h2>
+                    <div class="checkbox">
+                        <div class="pull-right">
+                            <button class="like_botton">찜 하기</button>
+                        </div>
+                    </div>
+                    <p>
+                        <!-- <pre> -->
+                        1. 냄비에 물을 붓고 무와 양파를 넣어, 센불에 8분 정도 올려 끓으면, 중불로 낮추어 20분 정도 더 끓이다가 다시마를 넣고 불을 끈다음 5분정도 두었다가 체에 걸러
+                        찌갯국물을
+                        만든다(1.2kg).【사진2】
+
+                        2. 냄비를 달구어 참기름을 두르고, 돼지고기를 넣어 중불에서 2분 정도 볶다가, 배추김치를 넣고 2분 정도 더 볶는다.【사진3】
+
+                        3. 볶은 돼지고기와 배추김치에 찌갯국물과 고춧가루를 넣고, 센불에 6분 정도 올려 끓으면 중불로 낮추어 30분 정도 더 끓인다.
+                        <!-- </pre> -->
+                    </p>
+                </div>
+            </article>
+            <div class="sorted" style="background-color: orangered; border: 1px solid orangered;;">
+                <div class="button">중식</div>
+            </div>
+            <article class="articles">
+                <div class="article-content">
+                    <h2 class="article-head">짬뽕</h2>
+                    <div class="checkbox">
+                        <div class="pull-right">
+                            <button class="like_botton">찜 하기</button>
+                        </div>
+                    </div>
+                    <p>
+                        <!-- <pre> -->
+                        1. 냄비에 물을 붓고 무와 양파를 넣어, 센불에 8분 정도 올려 끓으면, 중불로 낮추어 20분 정도 더 끓이다가 다시마를 넣고 불을 끈다음 5분정도 두었다가 체에 걸러
+                        찌갯국물을
+                        만든다(1.2kg).【사진2】
+
+                        2. 냄비를 달구어 참기름을 두르고, 돼지고기를 넣어 중불에서 2분 정도 볶다가, 배추김치를 넣고 2분 정도 더 볶는다.【사진3】
+
+                        3. 볶은 돼지고기와 배추김치에 찌갯국물과 고춧가루를 넣고, 센불에 6분 정도 올려 끓으면 중불로 낮추어 30분 정도 더 끓인다.
+                        <!-- </pre> -->
+                    </p>
+                </div>
+            </article>
+            <div class="sorted" style="background-color: rgb(62, 105, 245); border: 1px solid rgb(62, 105, 245);">
+                <div class="button">양식</div>
+            </div>
+            <article class="articles">
+                <div class="article-content">
+                    <h2 class="article-head">파스타</h2>
+                    <div class="checkbox">
+                        <div class="pull-right">
+                            <button class="like_botton">찜 하기</button>
+                        </div>
+                    </div>
+                    <p>
+                        <!-- <pre> -->
+                        1. 냄비에 물을 붓고 무와 양파를 넣어, 센불에 8분 정도 올려 끓으면, 중불로 낮추어 20분 정도 더 끓이다가 다시마를 넣고 불을 끈다음 5분정도 두었다가 체에 걸러
+                        찌갯국물을
+                        만든다(1.2kg).【사진2】
+
+                        2. 냄비를 달구어 참기름을 두르고, 돼지고기를 넣어 중불에서 2분 정도 볶다가, 배추김치를 넣고 2분 정도 더 볶는다.【사진3】
+
+                        3. 볶은 돼지고기와 배추김치에 찌갯국물과 고춧가루를 넣고, 센불에 6분 정도 올려 끓으면 중불로 낮추어 30분 정도 더 끓인다.
+                        <!-- </pre> -->
+                    </p>
+                </div>
+            </article>
+            <div class="sorted" style="background-color: white; border: 1px solid white;">
+                <div class="button">일식</div>
+            </div>
+            <article class="articles">
+                <div class="article-content">
+                    <h2 class="article-head">돈부리</h2>
+                    <div class="checkbox">
+                        <div class="pull-right">
+                            <button class="like_botton">찜 하기</button>
+                        </div>
+                    </div>
+                    <p>
+                        <!-- <pre> -->
+                        1. 냄비에 물을 붓고 무와 양파를 넣어, 센불에 8분 정도 올려 끓으면, 중불로 낮추어 20분 정도 더 끓이다가 다시마를 넣고 불을 끈다음 5분정도 두었다가 체에 걸러
+                        찌갯국물을
+                        만든다(1.2kg).【사진2】
+
+                        2. 냄비를 달구어 참기름을 두르고, 돼지고기를 넣어 중불에서 2분 정도 볶다가, 배추김치를 넣고 2분 정도 더 볶는다.【사진3】
+
+                        3. 볶은 돼지고기와 배추김치에 찌갯국물과 고춧가루를 넣고, 센불에 6분 정도 올려 끓으면 중불로 낮추어 30분 정도 더 끓인다.
+                        <!-- </pre> -->
+                    </p>
+                </div>
+            </article>
+            <div class="sorted" style="background-color: rgb(78, 122, 78); border: 1px solid rgb(78, 122, 78);">
+                <div class="button">기타</div>
+            </div>
+
+        </section>
+        <aside id="main-aside">
+            <span>인기글</span>
+            <ul>
+                <li class="overflow">돼지고기김치찌개 황금레시피 간단해</li>
+                <li class="overflow">제육볶음 레시피 쌈싸먹기 딱!</li>
+                <li class="overflow">집밥움선생 된장찌개 황금레시피♥︎</li>
+                <li class="overflow">제주멸치액젓 한스푼, 소고기미역국 레시피 꿀팁</li>
+            </ul>
+        </aside>
+    </div>
+
+    <footer>
+        <p>Copyritght 2020 by minsu</p>
+        <p>Webprograming Mid-term Report</p>
+    </footer>
+</body>
+
+</html>
