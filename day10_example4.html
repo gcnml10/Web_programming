@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Array 객체를 이용한 배열 만들기(평균 온도 구하기)</title>
+
+    </head>
+    <body>
+        <h3>평균온도</h3>
+        <script>
+            //15.1 15.4 16.1 17.5 19.2 21.4 6일간의 온도를 측정
+            //평균 온도를 구하라.
+    
+            //1. 변수 선언(with 초기화)
+            var i = 0;
+            var degree = new Array();
+            var sum = 0;
+            var avgDefree = 0.0;
+            //2.데이터 입력
+            degree[0] = 15.1; degree[1] = 15.4; degree[2] = 16.1; degree[3] = 17.5; degree[4] = 19.2; degree[5] = 21.4;
+            //3. 연산
+            for (i=0;i < degree.lenght;i++) {
+                sum += degree[i];
+            }
+    
+            avgDefree = sum/degree.length;
+            //4.결과 출력
+            // alert('Average temperature for 6 days: ' + avgDefree);
+            document.write("평균온도: " + avgDefree)
+        </script>
+        
+        
+    </body>
+</html>

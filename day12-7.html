@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Basic</title>
+        <script>
+            function change(){
+                var p = document.getElementById("image");
+                p.innerHTML = "<img src='temp_1600307328905.-1951045995.jpeg' width='400' height='600'>";
+            }
+        </script>
+    </head>
+    <body>
+        <h3> innerHTML 응용</h3>
+        <p> 아래 글자를 클릭하시면 이미지가 나오게 됩니다.</p>
+        <p id = "image" style="color:blue" onclick="change()" ><span>클릭해 보세요</span></p>
+    </body>
+</html>

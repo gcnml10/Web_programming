@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>방문 시간에 따라 배경색 바꾸기</title>
+
+    </head>
+    <body>
+        <h3>방문 초 값에 따라</h3>
+        <script>
+            var date = new Date();
+            var sec = date.getSeconds();
+
+            if (sec % 2 == 0 ) {
+                document.body.style.backgroundColor = 'violet';
+            } else {
+                document.body.style.backgroundColor = 'lightskyblue';
+            }
+
+            document.write("방문시간 : ");
+            document.write(date.getHours() +"시 ");
+            document.write(date.getMinutes() + '분');
+            document.write(date.getSeconds() + "초" + "<br>");
+            
+        </script>
+        
+        
+    </body>
+</html>

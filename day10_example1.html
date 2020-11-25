@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Javascript Basic</title>
+    
+    <script>
+        // 변수 선언
+        var date = new Date(); //Date()는 날짜를 나타내는 객체(object)(class --> instance)
+        var hours = date.getHours();
+
+        if (hours < 5){      // 조건문은 반드시 참 또는 거짓의 결과를 가져야 함. (관계연산자, 논리연산자, 두가지 혼합)
+            alert("더 자렴");
+        }
+        else if (hours < 7){
+            alert("출근 준비");
+        }
+        else if (hours < 9){
+            alert("출근");
+        }
+        else if (hours < 12){
+            alert("점심 준비");
+        }
+        else {
+            alert("메롱")
+        }
+
+
+    </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
