@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQeury Basic</title>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script>
+            // $(document).ready(function(){
+            //     $('img').attr('alt', 'jQuery를 이용한 속성값 지정');
+            //     $('img').attr('src', 'dog.gif');
+            //     $('img').attr('width', 500);
+            // });
+
+            $(document).ready(function(){
+                $('img').attr({
+                    alt: 'jQuery',
+                    width:  function(index){
+                        var size = (index +1)*200;
+                        return  size;
+                    },
+                    src: 'https://i.picsum.photos/id/1003/1181/1772.jpg?hmac=oN9fHMXiqe9Zq2RM6XT-RVZkojgPnECWwyEF1RvvTZk'
+
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <img>
+        <img>
+        <img>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQeury Basic</title>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script>
+        
+            $(document).ready(function(){
+                var output = '';
+                for (var i = 0; i < 256; i++){
+                    output += '<div></div>';
+                }
+                document.body.innerHTML = output;
+
+                $('div').css({
+                    height: 2,
+                    backgroundColor: function(j){
+                        return 'rgb(' + j + ',' + j + ',' + j + ')'
+                    }
+                })
+            });
+        </script>
+    </head>
+    <body>
+      
+    </body>
+</html>

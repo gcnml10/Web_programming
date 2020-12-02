@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Basic</title>
+        <script>
+            window.onload = function(){
+                var p = document.getElementById("p");
+                p.onmouseover = function(){
+                    p.style.color = 'orchid';
+                }
+                p.onmouseout = function(){
+                    p.style.color = 'black';
+                }
+                
+            }
+
+            function calculate(){
+                var exp = document.getElementById("exp");
+                var result = document.getElementById("result");
+
+                result.value = eval(exp.value);
+            }
+
+            
+        </script>
+    </head>
+    <body>
+        <p id="p">올리면 색 변함</p>
+        <br>
+        <br>
+        <h3>onclick 을 통한 계산기 만들기</h3>
+        <hr>
+        <form>
+            식: <input type="text" id="exp" value=""><br>
+            값: <input type="text" id="result">
+            <input type="button" value="계산" onclick="calculate()">
+        </form>
+        <br>
+        <br>
+        <h3>마우스 이벤트 처리</h3>
+        <hr>
+        <img src="https://picsum.photos/seed/picsum/200/300" onmouseover="where(event)"><br>
+        <div id="div"></div>
+        <script>
+            function where(e){
+                var d = document.getElementById("div")
+                var text = "버튼: " + e.button + "<br>"
+                text += "(screenX, screenY): " + e.screenX + ', ' + e.screenY
+                text += "(clientX, clientY): " + e.clientX + ', ' + e.clientY
+                d.innerHTML = text;
+            }
+        </script>
+    </body>
+</html>
