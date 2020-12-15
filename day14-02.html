@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Slider</title>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function(){
+                var width = $('[data-role="slider"]').attr('data-width');
+                var height = $('[data-role= "slider"]').attr('data-height');
+                var count = $('[data-role="slider"] div.item').length;
+
+                $('[data-role="slider"]').css({
+                    position: 'relative',
+                    overflow: 'hidden',
+                    width: width,
+                    height: height
+                }).find('.container').css({
+                    position: 'absoulte',
+                    width: count*width,
+                    overflow: 'hidden'
+                }).find('.item').css({
+                    width: width,
+                    height: height,
+                    float: 'left'
+                });
+            }); 
+            
+            $(document).ready(function(){
+                var width = $('[data-role = "slider"]').attr('data-width');
+                var count = $('[data-role="slider"] div.item').length;
+                console.log(count)
+                var currentPage = 0;
+                var changePage = function(){
+                    $('[data-role="slider"] > .container').animate({
+                        left: -currentPage*width
+                    }, 500);
+                };
+
+                $('#left-button').click(function(){
+                    if (currentPage>0){
+                        //왼쪽으로 이동
+                        currentPage = currentPage - 1;
+                        changePage();
+                    }
+                });
+
+                $('#right-button').click(function(){
+                    if (currentPage < count - 1){
+                        //오른쪽으로 이동
+                        currentPage = currentPage + 1;
+                        changePage();
+                    }
+                })
+            });     
+        </script>
+    </head>
+    <body>
+        <div data-role='slider' data-width='500' data-height='300'>  <!--data-role은 아이디랑 비슷함-->
+            <div class="container">
+                <div class="item">
+                    <h1>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</h1>
+                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC</p>
+                </div>
+                <div class="item">
+                    <h1>variations of passages of Lorem Ipsum available, but the majority have suffered alteration in or randomised words which my</h1>
+                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC</p>
+                </div>
+                <div class="item">
+                    <h1>sum is that it has a more-or-less normal distribution of lettertors now use Lorem Ipsum as their default model text, and a search </h1>
+                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC</p>
+                </div>
+            </div>
+        </div>
+
+        <button id="left-button">←</button>
+        <button id="right-button">→</button>
+
+
+    </body>
+</html>

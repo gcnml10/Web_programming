@@ -6,21 +6,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script>
-        window.onload = function(){
-            var input_1 = document.querySelectorAll('input')[0];
-            var input_2 = document.querySelectorAll('input')[1];
-
-            input_1.onkeydown = function(){
-                if (input_1.value.length >= 6){
-                    input_2.focus();
-                }
-            };
-            input_2.onkeydown = function(event){
-                var event = event || window.event;
-                if (event.keyCode == 8 && input_2.value.length == 0){
-                    input_1.focus();
-                }
-            };
+        window.onlead = function () {
+            var count = 0;
+            var image = document.getElementById('image');
+            var frame = ['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png',]
+            setInterval(function() {
+                image.src = frames[count % frames.length];
+                count = count + 1;
+            }, 1000/20);
         }
     </script>
 </head>
