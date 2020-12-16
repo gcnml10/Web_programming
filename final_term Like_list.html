@@ -202,7 +202,6 @@
             display: block;
             margin-bottom: 12px;
             height: 30px;
-            margin-bottom: 20px;
         }
     </style>
     <!--Aside 정리-->
@@ -260,20 +259,8 @@
             font-size: 30px;
         }
 
-        .edit_botton {
-            width: 60px;
-            height: auto;
-            padding: 5px;
-            font-family: 'Jua', sans-serif;
-            font-size: 20px;
-            background-color: green;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-        }
-
         .delete_botton {
-            width: 60px;
+            width: 70px;
             height: auto;
             padding: 5px;
             font-family: 'Jua', sans-serif;
@@ -284,6 +271,18 @@
             cursor: pointer;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        function delete_func(obj) {
+            var article = $(obj).parents('article')
+            console.log(article)
+            $.when($(article).fadeToggle('slow')).done(function () {
+                $(article).remove();
+            })
+                ;
+        }
+    </script>
 </head>
 
 <body>
@@ -326,17 +325,15 @@
     <div id="content">
         <section id="main-section">
             <div class="sorted">
-                <div class="button">우리집 집밥 레시피</div>
+                <div class="button">내가 찜한 레시피</div>
             </div>
             <article class="articles">
                 <div class="article-content">
                     <h2 class="article-head">제육볶음</h2>
                     <div class="checkbox">
                         <div class="pull-right">
-                            <button class="edit_botton">수정</button>
-                            <button class="delete_botton">삭제</button>
+                            <button class="delete_botton" onclick="delete_func(this)">찜 해제</button>
                         </div>
-
                     </div>
                     <p>
                         <!-- <pre> -->
@@ -357,10 +354,8 @@
                     <h2 class="article-head">김치찌개</h2>
                     <div class="checkbox">
                         <div class="pull-right">
-                            <button class="edit_botton">수정</button>
-                            <button class="delete_botton">삭제</button>
+                            <button class="delete_botton" onclick="delete_func(this)">찜 해제</button>
                         </div>
-
                     </div>
                     <p>
                         <!-- <pre> -->
@@ -380,10 +375,8 @@
                     <h2 class="article-head">비빔국수</h2>
                     <div class="checkbox">
                         <div class="pull-right">
-                            <button class="edit_botton">수정</button>
-                            <button class="delete_botton">삭제</button>
+                            <button class="delete_botton" onclick="delete_func(this)">찜 해제</button>
                         </div>
-
                     </div>
                     <p>
                         <!-- <pre> -->
@@ -403,10 +396,8 @@
                     <h2 class="article-head">김치전</h2>
                     <div class="checkbox">
                         <div class="pull-right">
-                            <button class="edit_botton">수정</button>
-                            <button class="delete_botton">삭제</button>
+                            <button class="delete_botton" onclick="delete_func(this)">찜 해제</button>
                         </div>
-
                     </div>
                     <p>
                         <!-- <pre> -->
@@ -433,6 +424,7 @@
             </ul>
         </aside>
     </div>
+
     <footer>
         <p>Copyritght 2020 by minsu</p>
         <p>Webprograming Mid-term Report</p>

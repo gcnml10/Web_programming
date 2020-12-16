@@ -235,6 +235,33 @@
             box-shadow: 0 6px 18px rgba(100, 100, 100, 0.3);
         }
     </style>
+    <script>
+        // 적용사항11
+        window.onload = function(){
+            var input_1 = document.querySelectorAll('.phnum')[0];
+            var input_2 = document.querySelectorAll('.phnum')[1];
+
+            input_1.onkeydown = function(){
+                if (input_1.value.length >= 4){
+                    input_2.focus();
+                }
+            };
+            input_2.onkeydown = function(event){
+                var event = event || window.event;
+                if (event.keyCode == 8 && input_2.value.length == 0){
+                    input_1.focus();
+                }
+            };
+        
+            // 적용사항12
+        var clock = document.getElementById('clock');
+
+                setInterval(function(){
+                    var now = new Date();
+                    clock.innerHTML = now.toLocaleString();
+                }, 1000)
+            }
+    </script>
 </head>
 
 <body>
@@ -298,8 +325,8 @@
                                     <option>011</option>
                                     <option>012</option>
                                 </select>-
-                                <input type="text">-
-                                <input type="text"></td>
+                                <input class="phnum" type="text">-
+                                <input class="phnum" type="text"></td>
                         </tr>
                         <tr>
                             <td>글제목</td>
@@ -321,8 +348,13 @@
                         </tr>
                         <tr>
                             <td></td>
+                            <td id="clock"></td>
+                        </tr>
+                         <tr>
+                            <td></td>
                             <td><input type="submit" value="제출"></td>
                         </tr>
+                        
                     </tbody>
                 </table>
             </form>

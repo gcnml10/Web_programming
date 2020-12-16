@@ -202,6 +202,7 @@
             display: block;
             margin-bottom: 12px;
             height: 30px;
+            margin-bottom: 20px;
         }
     </style>
     <!--Aside 정리-->
@@ -259,8 +260,20 @@
             font-size: 30px;
         }
 
+        .edit_botton {
+            width: 60px;
+            height: auto;
+            padding: 5px;
+            font-family: 'Jua', sans-serif;
+            font-size: 20px;
+            background-color: green;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
         .delete_botton {
-            width: 70px;
+            width: 60px;
             height: auto;
             padding: 5px;
             font-family: 'Jua', sans-serif;
@@ -271,6 +284,20 @@
             cursor: pointer;
         }
     </style>
+   
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        //  적용사항10
+        function delete_func(obj) {
+            var article = $(obj).parents('article')
+            console.log(article)
+            $.when($(article).fadeToggle('slow')).done(function () {
+                $(article).remove();
+            })
+                ;
+        }
+    </script>
 </head>
 
 <body>
@@ -313,17 +340,19 @@
     <div id="content">
         <section id="main-section">
             <div class="sorted">
-                <div class="button">내가 찜한 레시피</div>
+                <div class="button">우리집 집밥 레시피</div>
             </div>
             <article class="articles">
                 <div class="article-content">
                     <h2 class="article-head">제육볶음</h2>
                     <div class="checkbox">
                         <div class="pull-right">
-                            <button class="delete_botton">찜 해제</button>
+                            <button class="edit_botton">수정</button>
+                            <button class="delete_botton" onclick="delete_func(this)">삭제</button>
                         </div>
+                        <div style="display: block;"><img src="http://placehold.it/220x120" alt=""></div>
                     </div>
-                    <p>
+                    <p style="margin-top: 100px;">
                         <!-- <pre> -->
                         1. 뜨겁게 달군 팬에 식용유 1큰술을 두르고 채 썬 양파를 살짝 볶아놓는다.
 
@@ -342,10 +371,12 @@
                     <h2 class="article-head">김치찌개</h2>
                     <div class="checkbox">
                         <div class="pull-right">
-                            <button class="delete_botton">찜 해제</button>
+                            <button class="edit_botton">수정</button>
+                            <button class="delete_botton" onclick="delete_func(this)">삭제</button>
                         </div>
+                        <div style="display: block;"><img src="http://placehold.it/220x120" alt=""></div>
                     </div>
-                    <p>
+                    <p style="margin-top: 100px;">
                         <!-- <pre> -->
                         1. 냄비에 물을 붓고 무와 양파를 넣어, 센불에 8분 정도 올려 끓으면, 중불로 낮추어 20분 정도 더 끓이다가 다시마를 넣고 불을 끈다음 5분정도 두었다가 체에 걸러
                         찌갯국물을
@@ -363,10 +394,12 @@
                     <h2 class="article-head">비빔국수</h2>
                     <div class="checkbox">
                         <div class="pull-right">
-                            <button class="delete_botton">찜 해제</button>
+                            <button class="edit_botton">수정</button>
+                            <button class="delete_botton" onclick="delete_func(this)">삭제</button>
                         </div>
+                        <div style="display: block;"><img src="http://placehold.it/220x120" alt=""></div>
                     </div>
-                    <p>
+                    <p style="margin-top: 100px;">
                         <!-- <pre> -->
                         1. 냄비에 물을 붓고 무와 양파를 넣어, 센불에 8분 정도 올려 끓으면, 중불로 낮추어 20분 정도 더 끓이다가 다시마를 넣고 불을 끈다음 5분정도 두었다가 체에 걸러
                         찌갯국물을
@@ -384,10 +417,12 @@
                     <h2 class="article-head">김치전</h2>
                     <div class="checkbox">
                         <div class="pull-right">
-                            <button class="delete_botton">찜 해제</button>
+                            <button class="edit_botton">수정</button>
+                            <button class="delete_botton" onclick="delete_func(this)">삭제</button>
                         </div>
+                        <div style="display: block;"><img src="http://placehold.it/220x120" alt=""></div>
                     </div>
-                    <p>
+                    <p style="margin-top: 100px;">
                         <!-- <pre> -->
                         1. 냄비에 물을 붓고 무와 양파를 넣어, 센불에 8분 정도 올려 끓으면, 중불로 낮추어 20분 정도 더 끓이다가 다시마를 넣고 불을 끈다음 5분정도 두었다가 체에 걸러
                         찌갯국물을
@@ -412,7 +447,6 @@
             </ul>
         </aside>
     </div>
-
     <footer>
         <p>Copyritght 2020 by minsu</p>
         <p>Webprograming Mid-term Report</p>

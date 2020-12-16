@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Slider</title>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <style>
+            .paper{
+                width: 190px;
+                margin-top: 10px;
+                padding: 15px 15px 0;
+                font-size: 11px;
+                background: #ffffff;
+                box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+
+            }
+          
+            #darken-background {
+                position: absolute;
+                top: 0; left: 0; right: 0;
+                height: 100%;
+                display: none;
+                background: rgba(0,0,0,0.9);
+                z-index: 10000;
+                overflow-y: scroll;
+            }
+            #lightbox{
+                width:700px;
+                margin: 20px auto;
+                padding: 15px;
+
+                border: 1px solid #333333;
+                border-radius: 5px;
+                background: white;
+                box-shadow: 0 5px 5px rga(34,25,25,0.4);
+                text-align: center;
+
+            }
+            .user-information{
+                overflow:hidden;
+                text-align:left;
+            }
+            .user-information-image{
+                float: left;
+                width: 70px;
+            }
+            .user-information-text{
+                float:right;
+                width:620px;
+            }
+            .light-splitter{
+                margin: 10px 0;
+            }
+        </style>
+        <script>
+            $(document).ready(function(){
+                var width = $('[data-role="slider"]').attr('data-width');
+                var height = $('[data-role= "slider"]').attr('data-height');
+                var count = $('[data-role="slider"] div.item').length;
+
+                $('[data-role="slider"]').css({
+                    position: 'relative',
+                    overflow: 'hidden',
+                    width: width,
+                    height: height
+                }).find('.container').css({
+                    position: 'absoulte',
+                    width: count*width,
+                    overflow: 'hidden'
+                }).find('.item').css({
+                    width: width,
+                    height: height,
+                    float: 'left'
+                });
+            }); 
+            
+            $(document).ready(function(){
+                var width = $('[data-role = "slider"]').attr('data-width');
+                var count = $('[data-role="slider"] div.item').length;
+                console.log(count)
+                var currentPage = 0;
+                var changePage = function(){
+                    $('[data-role="slider"] > .container').animate({
+                        left: -currentPage*width
+                    }, 500);
+                };
+
+                $('#left-button').click(function(){
+                    if (currentPage>0){
+                        //왼쪽으로 이동
+                        currentPage = currentPage - 1;
+                        changePage();
+                    }
+                });
+
+                $('#right-button').click(function(){
+                    if (currentPage < count - 1){
+                        //오른쪽으로 이동
+                        currentPage = currentPage + 1;
+                        changePage();
+                    }
+                })
+
+                function showLightBox(){
+                    $('#darken-background').show();
+                    // $('#darken-background').css('top', $(window.scrollTop()))
+                    $('body').css('overflow', 'hidden')
+                }
+
+                function hideLightBox(){
+                    $('#darken-background').hide();
+                    $('body').css('overflow', '');
+                }
+                $('#darken-background').click(function(){
+                    hideLightBox();
+                })
+                $('.paper').click(function(){
+                    showLightBox();
+                })
+                $('#lightbox').click(function(event){
+                    event.stopPropagation();
+                })
+            });
+            
+                 
+        </script>
+    </head>
+    <body>
+        <div class="paper">dddddddddddddddd</div>
+        <div id="darken-background">
+            <div id="lightbox">
+                <div class="user-information">
+                    <a href="#" class="user-information-image">
+                        <img src="http://placehold.it/70x70" alt="">
+                    </a>
+                    <div class="user-informaion-text">
+                        <h3>User</h3>
+                        <p>iations of passages of L</p>
+                    </div>
+                    <div data-role='slider' data-width='500' data-height='300'>  <!--data-role은 아이디랑 비슷함-->
+                        <div class="container">
+                            <div class="item">
+                                <h1>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</h1>
+                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC</p>
+                            </div>
+                            <div class="item">
+                                <h1>variations of passages of Lorem Ipsum available, but the majority have suffered alteration in or randomised words which my</h1>
+                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC</p>
+                            </div>
+                            <div class="item">
+                                <h1>sum is that it has a more-or-less normal distribution of lettertors now use Lorem Ipsum as their default model text, and a search </h1>
+                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <button id="left-button">←</button>
+                    <button id="right-button">→</button>
+                
+                <!-- </div>
+                    <hr class="lightbox-splitter">
+                    <img src="http://placehold.it/500x300" alt="">
+            </div> -->
+        </div>       
+       
+
+
+    </body>
+</html>
